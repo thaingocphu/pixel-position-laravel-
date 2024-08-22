@@ -21,9 +21,18 @@
                 <a href="">Salaries</a>
                 <a href="">Company</a>
             </div>
-            <div>
-                post a job
+            @auth
+                <div class="font-bold space-x-3">
+                    <a href="{{route("jobs.create")}}">Post a Job</a>
+                    <a href="{{route("login.destroy")}}">Logout</a>
+                </div>
+            @endauth
+            @guest
+            <div class="space-x-6 font-bold">
+                <a href="{{route("register.create")}}">Sign Up</a>
+                <a href="{{route("login.create")}}">Login</a>
             </div>
+            @endguest
         </nav>
         <main class="mt-10 max-w-[986px] mx-auto">
             {{$slot}}

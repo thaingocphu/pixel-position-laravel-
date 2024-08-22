@@ -5,20 +5,22 @@ namespace App\Http\Controllers;
 use App\Models\Job;
 use App\Http\Requests\StoreJobRequest;
 use App\Http\Requests\UpdateJobRequest;
+use App\Models\Tag;
 
 class JobController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
-    }
+        //feature have two type values such as True(1) and False(0)
+        $jobs = Job::all()->groupBy("featured");
+        $tags = Tag::all();
 
-    /**
-     * Show the form for creating a new resource.
-     */
+        return view("jobs.index", [
+            "featured_jobs"=> $jobs[1],
+            "jobs"=> $jobs[0],
+            "tags"=> $tags
+        ]);
+    }
     public function create()
     {
         //
