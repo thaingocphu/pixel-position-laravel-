@@ -19,7 +19,7 @@ class RegisteredUserController extends Controller
         $userAttributes = request()->validate([
             "name"=> ["required"],
             "email"=> ["required","email", "unique:users,email"],
-            "password"=>["required", Password::min(8), 'confirmed'],
+            "password"=>["required", Password::min(6), 'confirmed'],
         ]);
 
         $employerAttributes = request()->validate([

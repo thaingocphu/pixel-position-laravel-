@@ -12,7 +12,7 @@ class Tag extends Model
 
     protected $guarded = [];
 
-    public function job(): BelongsToMany {
+    public function jobs(): BelongsToMany {
         return $this->belongsToMany(Job::class);
     }
 }
