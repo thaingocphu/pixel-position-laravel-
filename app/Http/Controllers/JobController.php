@@ -14,7 +14,7 @@ class JobController extends Controller
     public function index()
     {
         //feature have two type values such as True(1) and False(0)
-        $jobs = Job::latest()->get()->groupBy("featured");
+        $jobs = Job::latest()->with(["employer", "tags"])->get()->groupBy("featured");
         $tags = Tag::latest()->get();
 
         return view("jobs.index", [

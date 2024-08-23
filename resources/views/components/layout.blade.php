@@ -24,7 +24,11 @@
             @auth
                 <div class="font-bold space-x-3">
                     <a href="{{route("jobs.create")}}">Post a Job</a>
-                    <a href="{{route("login.destroy")}}">Logout</a>
+                    <form method="POST" action="{{route('login.destroy')}}">
+                        @csrf
+                        @method("DELETE")
+                        <button>Logout</button>
+                    </form>
                 </div>
             @endauth
             @guest

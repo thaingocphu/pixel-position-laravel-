@@ -15,7 +15,7 @@ class SessionController extends Controller
     }
     public function store(Request $request)
     {
-        $userAttributes = request()->validate([
+        $userAttributes = $request->validate([
             "email"=> ["required", 'email'],
             "password"=> ["required", Password::min(6)],
         ]);
@@ -26,13 +26,13 @@ class SessionController extends Controller
             ]);
         }
 
-        request()->session()->regenerate();
+        $request->session()->regenerate();
 
         return redirect()->route("jobs.index");
 
 
     }
-    public function destroy(string $id)
+    public function destroy()
     {
         Auth::logout();
         return redirect()->route("jobs.index");
